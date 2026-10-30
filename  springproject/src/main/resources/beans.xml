@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="https://www.springframework.org/schema/beans"
+       xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="https://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       https://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       https://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="bankService" class="com.example.aop.BankService"/>
+
+    <bean id="bank" class="com.example.aop.Bank"/>
+
+    <aop:config>
+
+        <aop:aspect ref="bank">
+
+            <aop:before method="logBefore"
+                pointcut="execution(* com.example.aop.BankService.*(..))"/>
+
+            <aop:after method="logAfter"
+                pointcut="execution(* com.example.aop.BankService.*(..))"/>
+
+        </aop:aspect>
+
+    </aop:config>
+
+</beans>

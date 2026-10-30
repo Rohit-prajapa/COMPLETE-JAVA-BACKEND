@@ -1,0 +1,17 @@
+package com.example.multiple;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class MainApp {
+
+    public static void main(String[] args) {
+
+        ApplicationContext ctx =                    // ✅ FIXED HERE
+                new ClassPathXmlApplicationContext("bean.xml");
+
+        Student ss = ctx.getBean("s1", Student.class);
+
+        ss.show();
+    }
+}
