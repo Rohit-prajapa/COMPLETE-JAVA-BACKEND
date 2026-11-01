@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Engine Bean -->
+    <bean id="e1" class="com.example.demo.Engine"/>
+
+    <!-- Car Bean -->
+    <bean id="c1" class="com.example.demo.Car">
+
+        <!-- Setter Injection -->
+        <property name="engine" ref="e1"/>
+
+    </bean>
+
+</beans>
