@@ -1,7 +1,14 @@
 package com.telusko.simpleWebApp.Model;
 
-public class product {
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import org.springframework.stereotype.Component;
+
+@Component
+@Entity
+public class product {
+    @Id
     private int id;
     private String name;
     private int price;
