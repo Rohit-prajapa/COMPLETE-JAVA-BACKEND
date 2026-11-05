@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CourseApp | Courses</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" th:href="@{/courses}">Course<span>App</span></a>
+    <span class="topbar-note">Spring Boot Course Management</span>
+</header>
+
+<main class="container">
+    <div class="page-heading">
+        <div>
+            <p class="eyebrow">LEARNING MANAGEMENT</p>
+            <h1>All Courses</h1>
+            <p class="muted">Create, view, update and delete your courses.</p>
+        </div>
+        <a class="btn btn-primary" th:href="@{/courses/new}">+ Add Course</a>
+    </div>
+
+    <div class="alert success" th:if="${successMessage}" th:text="${successMessage}"></div>
+    <div class="alert error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+
+    <section class="panel">
+        <div class="panel-heading">
+            <h2>Course catalogue</h2>
+            <span class="count" th:text="${#lists.size(courses)} + ' courses'">0 courses</span>
+        </div>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(courses)}">
+            <div class="empty-icon">📚</div>
+            <h3>No courses yet</h3>
+            <p>Add your first course to get started.</p>
+            <a class="btn btn-primary" th:href="@{/courses/new}">Add your first course</a>
+        </div>
+
+        <div class="table-wrap" th:unless="${#lists.isEmpty(courses)}">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Course</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th class="actions-heading">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="course : ${courses}">
+                    <td class="id-cell" th:text="${course.id}">1</td>
+                    <td class="course-title" th:text="${course.title}">Java</td>
+                    <td class="description" th:text="${course.description}">Java basics</td>
+                    <td th:text="${#numbers.formatDecimal(course.price, 1, 2)}">0.00</td>
+                    <td>
+                        <div class="actions">
+                            <a class="btn btn-small btn-light"
+                               th:href="@{/courses/edit/{id}(id=${course.id})}">Edit</a>
+                            <form th:action="@{/courses/delete/{id}(id=${course.id})}" method="post"
+                                  onsubmit="return confirm('Delete this course?');">
+                                <button class="btn btn-small btn-danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer>Built with Spring Boot · Thymeleaf · Spring Data JPA · H2</footer>
+</main>
+</body>
+</html>

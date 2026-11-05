@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' | CourseApp'">Course Form | CourseApp</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" th:href="@{/courses}">Course<span>App</span></a>
+    <a class="topbar-link" th:href="@{/courses}">Back to courses</a>
+</header>
+
+<main class="container form-container">
+    <p class="eyebrow">COURSE CATALOGUE</p>
+    <h1 th:text="${pageTitle}">Add Course</h1>
+    <p class="muted">Enter the course information below.</p>
+
+    <section class="panel form-panel">
+        <form th:action="@{/courses}" th:object="${course}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="form-group">
+                <label for="title">Course title</label>
+                <input id="title" type="text" th:field="*{title}" placeholder="e.g. Java Programming"
+                       th:classappend="${#fields.hasErrors('title')} ? ' invalid' : ''">
+                <small class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" rows="4" th:field="*{description}"
+                          placeholder="What will students learn?"
+                          th:classappend="${#fields.hasErrors('description')} ? ' invalid' : ''"></textarea>
+                <small class="field-error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input id="price" type="number" min="0" step="0.01" th:field="*{price}" placeholder="e.g. 1999.00"
+                       th:classappend="${#fields.hasErrors('price')} ? ' invalid' : ''">
+                <small class="field-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></small>
+            </div>
+
+            <div class="form-actions">
+                <a class="btn btn-light" th:href="@{/courses}">Cancel</a>
+                <button class="btn btn-primary" type="submit">Save Course</button>
+            </div>
+        </form>
+    </section>
+</main>
+</body>
+</html>

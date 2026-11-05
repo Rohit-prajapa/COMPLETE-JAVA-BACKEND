@@ -1,0 +1,5 @@
+com\telusko\courseapp\service\CourseService.class
+com\telusko\courseapp\CourseappApplication.class
+com\telusko\courseapp\controller\CourseController.class
+com\telusko\courseapp\repository\CourseRepository.class
+com\telusko\courseapp\model\Course.class
