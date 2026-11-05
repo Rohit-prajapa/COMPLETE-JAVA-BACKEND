@@ -1,0 +1,35 @@
+
+services:
+  student-app:
+    build: .
+    container_name: student-app
+    ports:
+      - "8083:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/telusko
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: "admin@123"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  postgres:
+    image: postgres:18
+    container_name: student-postgres
+    environment:
+      POSTGRES_DB: telusko
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "admin@123"
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d telusko"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
