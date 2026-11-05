@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+<<<<<<< HEAD
+      <profile name="Annotation profile for ecom-project" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.48/lombok-1.18.48.jar" />
+        </processorPath>
+        <module name="ecom-project" />
+=======
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="simpleWebApp" />
+>>>>>>> 462d59e9e115a5a9296390cd39b609d5297b7860
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
+      <module name="ecom-project" options="-parameters" />
+=======
+      <module name="simpleWebApp" options="-parameters" />
+>>>>>>> 462d59e9e115a5a9296390cd39b609d5297b7860
+    </option>
+  </component>
+</project>
